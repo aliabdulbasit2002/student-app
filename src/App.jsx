@@ -8,7 +8,7 @@ const App = () => {
       <GridItem colSpan={{ base: 12, md: 6 }}>
         <StudentForm />
       </GridItem>
-      <GridItem bg="red.500" colSpan={{ base: 12, md: 6 }}>
+      <GridItem colSpan={{ base: 12, md: 6 }}>
         <Students />
       </GridItem>
     </Grid>

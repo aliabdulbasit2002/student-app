@@ -1,4 +1,11 @@
-import { Box, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  useToast,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
@@ -12,6 +19,7 @@ const StudentForm = () => {
   });
   const { title, noteText } = studentData;
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const handleChange = (e) => {
     setStudentData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -21,8 +29,6 @@ const StudentForm = () => {
     e.preventDefault();
 
     let today = new Date();
-    // let hour = date.getHours();
-    // let minute = date.getMinutes();
     let time =
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
@@ -34,6 +40,13 @@ const StudentForm = () => {
     };
 
     dispatch(addStudent(newStudent));
+
+    toast({
+      status: "success",
+      position: "bottom-left",
+      description: "Added Successfully",
+      isClosable: true,
+    });
 
     setStudentData({
       title: "",

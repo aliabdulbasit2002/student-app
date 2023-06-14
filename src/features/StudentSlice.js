@@ -27,7 +27,7 @@ export const StudentSlice = createSlice({
     editStudent: (state, action) => {
       state.students = state.students.map((student) => {
         if (student.id === action.payload.id) {
-          return action.payload.update;
+          return action.payload.updatedStudent;
         }
         return student;
       });
