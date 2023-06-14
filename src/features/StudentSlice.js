@@ -10,11 +10,19 @@ export const StudentSlice = createSlice({
   reducers: {
     addStudent: (state, action) => {
          state.students.push(action.payload) 
+    },
+
+    deleteStudent: (state, action) => {
+      state.students = state.students.filter((student) => {
+        if (student.id !== action.payload) {
+          return student;
+        }
+      })
     }
-  },
+  }
 })
 
 // Action creators are generated for each case reducer function
-export const { addStudent } = StudentSlice.actions
+export const { addStudent, deleteStudent } = StudentSlice.actions
 
 export default StudentSlice.reducer

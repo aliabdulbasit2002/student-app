@@ -1,5 +1,8 @@
 import { Box, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import {useState} from "react";
+import { useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
+import { addStudent } from "../features/StudentSlice";
 
 const StudentForm = () => {
  const [studentData, setStudentData] = useState({
@@ -7,6 +10,7 @@ const StudentForm = () => {
   noteText: ""
  })
  const {title, noteText} = studentData;
+ const dispatch = useDispatch();
 
  const handleChange = (e) => {
 
@@ -16,8 +20,8 @@ const StudentForm = () => {
 
  const handleSubmit = (e) => {
   e.preventDefault();
-  let newStudent = {title, noteText}
-  console.log(newStudent);
+  let newStudent = {title, noteText, id: uuid()}
+  dispatch(addStudent(newStudent))
   setStudentData({
     title: "",
     noteText: ""
